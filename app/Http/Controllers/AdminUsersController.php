@@ -80,7 +80,10 @@ class AdminUsersController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+        $roles = Role::pluck('name','id');
+
+        return view('admin.users.edit',compact('user','roles'));
     }
 
     /**
@@ -90,9 +93,26 @@ class AdminUsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UsersRequest $request, $id)
     {
-        //
+        $user = User::find($id);
+        $formInput = $request->except('photo_id');
+
+        $photo_id = $request->photo_id;
+        if($photo_id){
+            $photoName = $photo_id->getClientOriginalName();
+            $photo_id->move('photos',$photoName);
+
+           $photo =  Photo::create(['file'=>$photoName]);
+            
+            $formInput['photo_id'] = $photo->id;
+
+        }
+
+        $formInput['password'] = bcrypt($request->password);
+        $user->update($formInput);
+        return redirect()->route('admin.index')->with('success','User Edited Successfully');
+       
     }
 
     /**
