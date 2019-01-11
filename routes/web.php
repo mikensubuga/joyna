@@ -26,6 +26,7 @@ Route::resource('admin/users', 'AdminUsersController');
 //         return view('admin.index');
 //     })->name('admin.index');
 // });
+Route::get('/logout', 'Auth\LoginController@logout');
 
 Route::group(['prefix' => 'admin','middleware' => ['auth','admin']], function(){
     Route::get('/', function(){
