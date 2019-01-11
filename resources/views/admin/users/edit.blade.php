@@ -4,6 +4,7 @@
 <div class="well">  
     <h1>Edit User </h1>
     </div>
+    <div class="row">
 <div class="col-sm-3">
 
                 @if ($user->photo)
@@ -49,15 +50,21 @@
             <div class="form-group">
                     {{Form::label('password', 'Password')}}
                     {{Form::password('password',['class' => 'form-control',])}}
-        </div>
+                </div>
             
            
-            {{ Form::submit('Edit User', ['class'=>'btn btn-primary'])}}
+            {{ Form::submit('Update User', ['class'=>'btn btn-primary'])}}
             {!! Form::close() !!}
-        </div>
-        
-    
 
+            <br>
+            {!! Form::open(['route' => ['users.destroy',$user->id], 'method' => 'DELETE']) !!}
+              
+             {{ Form::submit('Delete User', ['class'=>'btn btn-danger'])}}
+                {!!Form::close()!!}
+
+        </div>
+    </div>
+       
 
 
 @endsection()
