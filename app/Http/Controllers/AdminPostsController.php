@@ -9,6 +9,7 @@ use App\User;
 use App\Role;
 use App\Photo;
 use App\Post;
+use App\Category;
 
 class AdminPostsController extends Controller
 {
@@ -31,7 +32,8 @@ class AdminPostsController extends Controller
      */
     public function create()
     {
-        return view('admin.posts.create');
+        $categories = Category::pluck('name','id');
+        return view('admin.posts.create',compact('categories'));
     }
 
     /**
