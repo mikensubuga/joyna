@@ -33,9 +33,9 @@
             @endif
             
             <td>{{$post->user['name']}}</td> {{-- Reurns an array and should be accesed with [] instead of -> --}}
-            <td>{{$post->category_id}}</td>
+            <td>{{$post->category['name']}}</td>
             <td><a href="{{route('posts.edit', $post->id)}}">{{$post->title}}</td>
-            <td>{{$post->body}}</td>
+            <td>{{str_limit($post->body,25)}}</td>
             <td>{{$post->created_at->diffForHumans()}}</td>
             <td>{{$post->updated_at->diffForHumans()}}</td>
         </tr>
