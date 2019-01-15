@@ -57,7 +57,7 @@ class AdminUsersController extends Controller
 
          $formInput['password'] = bcrypt($request->password);
          User::create($formInput);
-         return redirect()->route('admin.index')->with('success','User Created');
+         return redirect()->route('users.index')->with('success','User Created');
         
 
     }

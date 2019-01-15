@@ -14,7 +14,8 @@
     @forelse ($categories as $category)
     <tr>
     <td>{{$category->id}}</td>
-    <td>{{$category->name}}</td>
+    <td><a href="{{route('categories.edit', $category->id)}}">{{$category->name}}</td>
+
     <td>{{$category->created_at}}</td>
     <td>{{$category->updated_at}}</td>
     </tr>

@@ -142,6 +142,6 @@ class AdminPostsController extends Controller
 
         $post->delete();
 
-        return redirect()->route('admin.index')->with('success','Post was Deleted');
+        return redirect()->route('posts.index')->with('success','Post was Deleted');
     }
 }
