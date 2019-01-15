@@ -112,7 +112,7 @@ class AdminUsersController extends Controller
 
         $formInput['password'] = bcrypt($request->password);
         $user->update($formInput);
-        return redirect()->route('admin.index')->with('success','User Edited Successfully');
+        return redirect()->route('users.index')->with('success','User Edited Successfully');
        
     }
 
@@ -131,7 +131,7 @@ class AdminUsersController extends Controller
         //User::destroy($id);
         $user->delete();
         
-        return redirect()->route('admin.index')->with('success','User was Deleted');
+        return redirect()->route('users.index')->with('success','User was Deleted');
 
         // Session::flash('deleted user','The User was Deleted');
 

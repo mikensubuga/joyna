@@ -61,7 +61,7 @@ class AdminPostsController extends Controller
 
         $user->posts()->create($formInput);
 
-        return redirect()->route('admin.index')->with('success','Post Created');
+        return redirect()->route('posts.index')->with('success','Post Created');
        
 
     }
@@ -124,7 +124,7 @@ class AdminPostsController extends Controller
 //        $user->posts()->whereId($id)->first()->update($formInput);
         // Auth::user()->posts()->whereId($id)->first()->update($input);
         $post->update($formInput);
-        return redirect()->route('admin.index')->with('success','Post Updated');
+        return redirect()->route('posts.index')->with('success','Post Updated');
        
     }
 

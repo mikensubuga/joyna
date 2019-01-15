@@ -27,13 +27,14 @@ Route::get('/home', 'HomeController@index')->name('home');
 // });
 Route::get('/logout', 'Auth\LoginController@logout');
 
-Route::group(['prefix' => 'admin','middleware' => ['auth','admin']], function(){
-    Route::get('/', function(){
+Route::group(['middleware' => ['auth','admin']], function(){
+    Route::get('/admin', function(){
        return view('admin.index');
     })->name('admin.index');
 
 
     Route::resource('admin/users', 'AdminUsersController');
     Route::resource('admin/posts', 'AdminPostsController');
+    Route::resource('admin/categories', 'AdminCategoriesController');
 
 });
