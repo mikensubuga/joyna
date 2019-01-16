@@ -17,7 +17,7 @@
                     @forelse ($photos as $photo)
                     <tr>
                     <td>{{$photo->id}}</td>
-                    <td><a href="{{route('media.edit', $photo->id)}}"><img height = "100" src="{{$photo->file}}" /> </td>
+                    <td><img height = "100" src="{{$photo->file}}" /> </td>
                     <td>{{$photo->created_at}}</td>
                     <td>{{$photo->updated_at}}</td>
                     </tr>

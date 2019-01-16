@@ -12,15 +12,20 @@ class AdminMediaController extends Controller
         return view('admin.media.index', compact('photos'));
     }
 
+    public function create(){
+        return "create";
+    }
     public function edit(){
         
     }
 
     public function upload(){
+        return view('admin.media.create');
+
     }
 
-    public function show($id)
+    public function store(Request $request)
     {
-        //
+        return "store";
     }
 }
