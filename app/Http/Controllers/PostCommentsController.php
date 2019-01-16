@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Post;
+use App\User;
 
 class PostCommentsController extends Controller
 {
@@ -34,7 +37,22 @@ class PostCommentsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $user = Auth::user();
+      $this->validate($request,[
+        'body' => 'required'
+    ]);
+
+      $data = [
+        'post_id'=>$request->post_id,
+        'author'=>$user->name,
+        'email'=>$user->email,
+        'body'=>$request->body,
+        'photo'=>$user->photo['file']
+      ];
+      $post = Post::find($request->post_id);
+      $post->comments()->create($data);
+      return redirect()->route('front.home')->with('success','Comment Submitted');
+
     }
 
     /**

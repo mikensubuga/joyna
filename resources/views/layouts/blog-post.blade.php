@@ -70,6 +70,7 @@
 
             <!-- Blog Post Content Column -->
             <div class="col-lg-8">
+                @include('inc.messages')
                 @yield('content')
             </div>
             <!-- Blog Sidebar Widgets Column -->

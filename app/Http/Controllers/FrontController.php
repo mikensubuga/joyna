@@ -13,8 +13,9 @@ use App\Photo;
 class FrontController extends Controller
 {
    public function post($id){
+       $comments = Comment::all();
        $post = Post::find($id);
-       return view('front.post',compact('post'));
+       return view('front.post',compact('post','comments'));
    } 
    public function index(){
        return view('front.home');

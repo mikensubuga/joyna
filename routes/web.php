@@ -40,8 +40,11 @@ Route::group(['middleware' => ['auth','admin']], function(){
     Route::post('media-store','AdminMediaController@store')->name('media.store');
 
     Route::get('admin/media/upload','AdminMediaController@upload')->name('media.upload');
+    
+});
+Route::get('/post/{id}','FrontController@post')->name('front.post');
+Route::get('/','FrontController@index')->name('front.home');
+Route::group(['middleware' => 'auth'], function () {
     Route::resource('admin/comments', 'PostCommentsController');
     Route::resource('admin/comment/replies', 'CommentRepliesController');
 });
-Route::get('/post/{id}','FrontController@post');
-Route::get('/','FrontController@index');
