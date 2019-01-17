@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Post;
 use App\User;
+use App\Comment;
 
 class PostCommentsController extends Controller
 {
@@ -16,7 +17,8 @@ class PostCommentsController extends Controller
      */
     public function index()
     {
-        return view('admin.comments.index');
+        $comments = Comment::all();
+        return view('admin.comments.index', compact('comments'));
     }
 
     /**
