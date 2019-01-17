@@ -15,6 +15,7 @@
         <th>updated_at</th>
         <th>Post</th>
         <th>Post Name</th>
+        <th>View Replies</th>
         <th>Status</th>
         <th></th>
 
@@ -32,6 +33,7 @@
             <td>{{$comment->updated_at->diffForHumans()}}</td>
             <td><a href="{{route('front.post', $comment->post_id)}}">View Post</td>
             <td>{{$comment->post['title']}}</td>
+            <td><a href="{{route('replies.show', $comment->id)}}">View Replies</td>
             <td>
                 @if($comment->is_active == 1)
                     {!! Form::open(['route' => ['comments.update',$comment->id], 'method' => 'PATCH']) !!}

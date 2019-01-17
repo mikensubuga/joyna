@@ -148,6 +148,9 @@
                             <li>
                                 <a href="{{route('comments.index')}}">All Comments</a>
                             </li>
+                            <li>
+                                    <a href="{{route('replies.index')}}">All Replies</a>
+                                </li>
 
                         </ul>
                         <!-- /.nav-second-level -->

@@ -74,8 +74,9 @@
                             <p class="bg-info">  {{session('reply_message')}}</p>
                             @endif
                             @forelse ($comment->replies as $reply)
-                    
-                           
+
+
+                                @if($reply->is_active)
                         
                                 <div id="nested-comment" class="media">
                                     <a class="pull-left" href="#">
@@ -89,6 +90,7 @@
                                     </div>
                                     
                                 </div>
+                                @endif
                             
                             @empty
                             <br>
@@ -98,13 +100,13 @@
                             <div class="comment-reply-container">
                                     <button class="toggle-reply btn btn-primary pull-right">Reply</button>
 
-                                <div class="comment-reply">
+                                <div class="comment-reply col-sm-6">
 
                                     {!! Form::open(['route' => 'replies.createReply', 'method' => 'POST']) !!}
                                     <div class="form-group">
                                    
                                         <input type="hidden" name="comment_id" value="{{$comment->id}}">
-                                    {{Form::textarea('body','',['class' => 'form-control','rows'=>'1'])}}
+                                    {{Form::textarea('body','',['class' => 'form-control','rows'=>'2'])}}
                                     </div>
                 
                                     {{ Form::submit('Submit', ['class'=>'btn btn-primary'])}}

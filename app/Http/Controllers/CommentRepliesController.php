@@ -7,6 +7,8 @@ use App\Comment;
 use Illuminate\Support\Facades\Auth;
 use App\Post;
 use App\User;
+use App\CommentReply;
+
 class CommentRepliesController extends Controller
 {
     /**
@@ -16,7 +18,9 @@ class CommentRepliesController extends Controller
      */
     public function index()
     {
-        //
+        $replies = CommentReply::all();
+        return view('admin.comments.replies.index',compact('replies'));
+    
     }
 
     /**
@@ -68,7 +72,9 @@ class CommentRepliesController extends Controller
      */
     public function show($id)
     {
-        //
+        $comment = Comment::find($id);
+        $replies = $comment->replies()->get();
+        return view('admin.comments.replies.show',compact('replies'));
     }
     /**
      * Show the form for editing the specified resource.
@@ -90,7 +96,16 @@ class CommentRepliesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $result = $request->is_active;
+        
+        if($result == 0){
+            CommentReply::find($id)->update($request->all());
+            return redirect()->route('replies.index')->with('success','Reply has been Unapproved ');
+        }else{
+            CommentReply::find($id)->update($request->all());
+            return redirect()->route('replies.index')->with('success','Reply has been Approved ');
+        }
+        
     }
 
     /**
@@ -101,6 +116,7 @@ class CommentRepliesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        CommentReply::destroy($id);
+       return redirect()->route('replies.index')->with('success','Reply has been deleted');
     }
 }

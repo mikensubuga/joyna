@@ -3,7 +3,7 @@
 
 @section('content')
 <div class="well">  
-    <h1>All Replies </h1>
+    <h1>Replies </h1>
 </div>
 <table class="table table-bordered">
     <tr class="info">

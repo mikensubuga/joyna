@@ -3,7 +3,7 @@
 
 @section('content')
 <div class="well">  
-    <h1>All Replies </h1>
+    <h1>Comments </h1>
 </div>
 <table class="table table-bordered">
     <tr class="info">
@@ -13,34 +13,34 @@
         <th>Body</th>
         <th>created_at</th>
         <th>updated_at</th>
-        
-        <th>Comment Name</th>
+        <th>Post</th>
+        <th>Post Name</th>
         <th>Status</th>
         <th></th>
 
 
     </tr>
-     @foreach($replies as $reply)
+     @foreach($comments as $comment)
         <tr class="active">
-            <td>{{$reply->id}}</td>
+            <td>{{$comment->id}}</td>
 
             
-            <td>{{$reply->author}}</td> {{-- Reurns an array and should be accesed with [] instead of -> --}}
-            <td>{{$reply->email}}</td>
-            <td>{{$reply->body}}</td>
-            <td>{{$reply->created_at->diffForHumans()}}</td>
-            <td>{{$reply->updated_at->diffForHumans()}}</td>
-        
-            <td>{{str_limit($reply->comment['body'],10)}}</td>
+            <td>{{$comment->author}}</td> {{-- Reurns an array and should be accesed with [] instead of -> --}}
+            <td>{{$comment->email}}</td>
+            <td>{{$comment->body}}</td>
+            <td>{{$comment->created_at->diffForHumans()}}</td>
+            <td>{{$comment->updated_at->diffForHumans()}}</td>
+            <td><a href="{{route('front.post', $comment->post_id)}}">View Post</td>
+            <td>{{$comment->post['title']}}</td>
             <td>
-                @if($reply->is_active == 1)
-                    {!! Form::open(['route' => ['replies.update',$reply->id], 'method' => 'PATCH']) !!}
+                @if($comment->is_active == 1)
+                    {!! Form::open(['route' => ['comments.update',$comment->id], 'method' => 'PATCH']) !!}
 
                     <input type="hidden" name="is_active" value="0">
                     {{ Form::submit('Un-Approve', ['class'=>'btn btn-primary'])}}
                     {!! Form::close() !!}
                 @else
-                    {!! Form::open(['route' => ['replies.update',$reply->id], 'method' => 'PATCH']) !!}
+                    {!! Form::open(['route' => ['comments.update',$comment->id], 'method' => 'PATCH']) !!}
 
                     <input type="hidden" name="is_active" value="1">
                     {{ Form::submit('Approve', ['class'=>'btn btn-success'])}}
@@ -49,7 +49,7 @@
                 @endif
             </td>
             <td>
-                    {!! Form::open(['route' => ['replies.destroy',$reply->id], 'method' => 'DELETE']) !!}
+                    {!! Form::open(['route' => ['comments.destroy',$comment->id], 'method' => 'DELETE']) !!}
 
                     {{ Form::submit('Delete', ['class'=>'btn btn-danger'])}}
                     {!! Form::close() !!}
