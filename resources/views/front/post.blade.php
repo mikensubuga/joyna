@@ -56,7 +56,8 @@
 
                 <!-- Comment -->
                 @forelse ($comments as $comment)
-                <div class="media">
+                    @if($comment->is_active)
+                     <div class="media">
                         <a class="pull-left" href="#">
                             <img class="media-object" width = "64" height= "64" src="{{$comment->photo}}" alt="">
                         </a>
@@ -66,7 +67,9 @@
                             </h4>
                             {{$comment->body}}
                         </div>
-                    </div>
+                        </div>
+                    @endif
+
                 @empty
                     No Comments
                 @endforelse

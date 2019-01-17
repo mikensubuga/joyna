@@ -88,7 +88,16 @@ class PostCommentsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $result = $request->is_active;
+        if($result == 0){
+            Comment::find($id)->update($request->all());
+            return redirect()->route('comments.index')->with('success','Comment has been Unapproved ');
+        }else{
+            Comment::find($id)->update($request->all());
+            return redirect()->route('comments.index')->with('success','Comment has been Approved ');
+        }
+        
+
     }
 
     /**
@@ -99,6 +108,7 @@ class PostCommentsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Comment::destroy($id);
+       return redirect()->route('comments.index')->with('success','Comment has been deleted');
     }
 }
