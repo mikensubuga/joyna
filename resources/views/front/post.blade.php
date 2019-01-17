@@ -28,10 +28,7 @@
                 <p class="lead">{{$post->body}}</p>
                 <hr>
                 @if(Session::has('comment_message'))
-
-                {{session('comment_message')}}
-    
-    
+                <p class="bg-info">  {{session('comment_message')}}</p>
                 @endif
                 <!-- Blog Comments -->
 
@@ -55,7 +52,7 @@
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form> --}}
                 </div>
-    @endif
+                 @endif
                 <hr>
 
                 <!-- Posted Comments -->
@@ -73,8 +70,13 @@
                             </h4>
                             {{$comment->body}}
                             <!--replies-->
+                            @if(Session::has('reply_message'))
+                            <p class="bg-info">  {{session('reply_message')}}</p>
+                            @endif
                             @forelse ($comment->replies as $reply)
-                            {{-- <div style="margin-top:30px" class="media"> --}}
+                    
+                           
+                        
                                 <div id="nested-comment" class="media">
                                     <a class="pull-left" href="#">
                                             <img class="media-object" width = "64" height= "64" src="{{$reply->photo}}" alt="">
@@ -87,12 +89,18 @@
                                     </div>
                                     
                                 </div>
+                            
                             @empty
                             <br>
                                 No Replies
                             @endforelse
                             <br>
-                            {!! Form::open(['route' => 'replies.createReply', 'method' => 'POST']) !!}
+                            <div class="comment-reply-container">
+                                    <button class="toggle-reply btn btn-primary pull-right">Reply</button>
+
+                                <div class="comment-reply">
+
+                                    {!! Form::open(['route' => 'replies.createReply', 'method' => 'POST']) !!}
                                     <div class="form-group">
                                    
                                         <input type="hidden" name="comment_id" value="{{$comment->id}}">
@@ -101,8 +109,11 @@
                 
                                     {{ Form::submit('Submit', ['class'=>'btn btn-primary'])}}
                                     {!! Form::close() !!}
+
+                                 </div>
+                            </div>
                         </div>
-                        </div>
+                    </div>
                     @endif
 
                 @empty
@@ -110,3 +121,10 @@
                 @endforelse
                
 @endsection()
+@section('scripts')
+<script type="text/javascript">
+    $(".comment-reply-container .toggle-reply").click(function(){
+        $(this).next().slideToggle("slow");
+    });
+</script>
+@endsection
