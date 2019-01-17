@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Comment;
+use Illuminate\Support\Facades\Auth;
+use App\Post;
+use App\User;
 class CommentRepliesController extends Controller
 {
     /**
@@ -37,6 +40,26 @@ class CommentRepliesController extends Controller
         //
     }
 
+    public function createReply(Request $request)
+    {
+        
+            $user = Auth::user();
+            $this->validate($request,[
+              'body' => 'required'
+          ]);
+      
+            $data = [
+              'comment_id'=>$request->comment_id,
+              'author'=>$user->name,
+              'email'=>$user->email,
+              'body'=>$request->body,
+              'photo'=>$user->photo['file']
+            ];
+            $comment = Comment::find($request->comment_id);
+            $comment->replies()->create($data);
+            $request->session()->flash('reply_message','Your Reply has been submitted and is waiting moderation');
+            return redirect()->back()->with('success','Reply Submitted');
+    }
     /**
      * Display the specified resource.
      *
@@ -47,7 +70,6 @@ class CommentRepliesController extends Controller
     {
         //
     }
-
     /**
      * Show the form for editing the specified resource.
      *

@@ -47,4 +47,6 @@ Route::get('/','FrontController@index')->name('front.home');
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('admin/comments', 'PostCommentsController');
     Route::resource('admin/comment/replies', 'CommentRepliesController');
+    Route::post('comment/reply','CommentRepliesController@createReply')->name('replies.createReply');
 });
+
