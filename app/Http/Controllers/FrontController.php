@@ -17,6 +17,7 @@ class FrontController extends Controller
       // $comments = Comment::all();
        $post = Post::find($id);
        $comments = $post->comments()->get();
+      // $comments = $post->comments()->whereIsActive(1)->get();
        return view('front.post',compact('post','comments'));
    } 
    public function index(){

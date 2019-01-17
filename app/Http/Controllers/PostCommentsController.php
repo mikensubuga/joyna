@@ -53,7 +53,8 @@ class PostCommentsController extends Controller
       ];
       $post = Post::find($request->post_id);
       $post->comments()->create($data);
-      return redirect()->route('front.home')->with('success','Comment Submitted');
+      $request->session()->flash('comment_message','Your message has been submitted and is waiting moderation');
+      return redirect()->back()->with('success','Comment Submitted');
 
     }
 

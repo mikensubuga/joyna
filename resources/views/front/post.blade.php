@@ -27,10 +27,16 @@
                 <!-- Post Content -->
                 <p class="lead">{{$post->body}}</p>
                 <hr>
+                @if(Session::has('comment_message'))
 
+                {{session('comment_message')}}
+    
+    
+                @endif
                 <!-- Blog Comments -->
 
                 <!-- Comments Form -->
+            @if(Auth::check())
                 <div class="well">
                     <h4>Leave a Comment:</h4>
                     {!! Form::open(['route' => 'comments.store', 'method' => 'POST']) !!}
@@ -49,7 +55,7 @@
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form> --}}
                 </div>
-
+    @endif
                 <hr>
 
                 <!-- Posted Comments -->
