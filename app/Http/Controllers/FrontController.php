@@ -22,6 +22,8 @@ class FrontController extends Controller
        return view('front.post',compact('post','comments'));
    } 
    public function index(){
-       return view('front.home');
+       $posts = Post::all();
+
+       return view('front.home',compact('posts'));
    }
 }

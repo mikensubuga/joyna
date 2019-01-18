@@ -56,6 +56,9 @@
                     <li>
                         <a href="#">Contact</a>
                     </li>
+                    <li>
+                        <a href="{{route('front.home')}}">Blog</a>
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
