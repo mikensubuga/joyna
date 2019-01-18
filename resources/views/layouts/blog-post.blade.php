@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Blog Post - Start Bootstrap Template</title>
+    <title>Joyna</title>
 
     <!-- Bootstrap Core CSS -->
     {{-- <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -142,7 +142,7 @@
         <footer>
             <div class="row">
                 <div class="col-lg-12">
-                    <p>Copyright &copy; Your Website 2014</p>
+                    <p>Copyright &copy; Joyna 2019</p>
                 </div>
             </div>
             <!-- /.row -->

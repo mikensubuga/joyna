@@ -28,9 +28,13 @@
         No Posts
     @endforelse
     
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-5">
+            {{$posts->render()}}
+        </div>
+    </div>
 
-
-    <!-- Pager -->
+    {{-- <!-- Pager -->
     <ul class="pager">
         <li class="previous">
             <a href="#">&larr; Older</a>
@@ -38,7 +42,7 @@
         <li class="next">
             <a href="#">Newer &rarr;</a>
         </li>
-    </ul>
+    </ul> --}}
 
 
 @endsection()
